@@ -12,7 +12,6 @@ const Users = () => {
       setUsers(allUsers);
       setLoading(false);
     };
-
     loadUsers();
   }, []);
 
@@ -35,65 +34,42 @@ const Users = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-blue-100 p-8">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-blue-100 p-6 md:p-10">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-blue-800">Users</h1>
-          <p className="text-blue-600 mt-1">List of all registered users</p>
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl font-bold text-blue-800 tracking-tight">
+            Users
+          </h1>
+          <p className="text-blue-600 mt-2">
+            List of all registered users
+          </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <thead className="bg-linear-to-r from-blue-600 to-blue-700">
-                <tr>
-                  <th className="px-6 py-2 text-left text-sm font-semibold text-white">
-                    First Name
-                  </th>
-                  <th className="px-6 py-2 text-left text-sm font-semibold text-white">
-                    Last Name
-                  </th>
-                  <th className="px-6 py-2 text-left text-sm font-semibold text-white">
-                    Email
-                  </th>
-                  <th className="px-6 py-2 text-left text-sm font-semibold text-white">
-                    Gender
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody className="divide-y divide-blue-50">
-                {users.map((user, index) => (
-                  <tr
-                    key={user.id}
-                    className={`transition-all hover:bg-blue-50 ${
-                      index % 2 === 0 ? "bg-white" : "bg-blue-50/30"
-                    }`}
-                  >
-                    <td className="px-6 py-2 font-medium text-gray-900">
-                      {user.firstName}
-                    </td>
-                    <td className="px-6 py-2 text-gray-700">{user.lastName}</td>
-                    <td className="px-6 py-2 text-blue-600 font-medium">
-                      {user.email}
-                    </td>
-                    <td className="px-6 py-2">
-                      <span
-                        className={`inline-flex items-center justify-center px-4 py-1 rounded-full text-xs font-semibold tracking-wide ${
-                          user.gender === "male"
-                            ? "bg-blue-100 text-blue-700"
-                            : "bg-pink-100 text-pink-700"
-                        }`}
-                      >
-                        {user.gender.charAt(0).toUpperCase() +
-                          user.gender.slice(1)}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border border-blue-50"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-gray-900">
+                  {user.firstName} {user.lastName}
+                </h2>
+                <span
+                  className={`inline-flex items-center justify-center w-20 h-6 rounded-full text-xs font-semibold tracking-wide ${
+                    user.gender === "male"
+                      ? "bg-blue-100 text-blue-700"
+                      : "bg-pink-100 text-pink-700"
+                  }`}
+                >
+                  {user.gender.charAt(0).toUpperCase() + user.gender.slice(1)}
+                </span>
+              </div>
+              <p className="text-blue-600 font-medium truncate hover:underline cursor-pointer">
+                {user.email}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
