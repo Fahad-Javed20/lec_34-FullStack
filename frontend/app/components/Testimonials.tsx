@@ -22,7 +22,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-br from-blue-50 via-white to-cyan-50">
+    <section className="bg-linear-to-br from-blue-50 via-white to-cyan-50">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap -m-4">
           {testimonials.map((testimonial, index) => (
@@ -36,7 +36,7 @@ const Testimonials = () => {
                 <p className="leading-relaxed text-gray-600 mb-6">
                   {testimonial.text}
                 </p>
-                <span className="inline-block h-1 w-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 mb-4"></span>
+                <span className="inline-block h-1 w-12 rounded-full bg-linar-to-r from-blue-500 to-cyan-400 mb-4"></span>
                 <h2 className="text-gray-900 font-semibold tracking-wider text-sm mb-1">
                   {testimonial.name}
                 </h2>

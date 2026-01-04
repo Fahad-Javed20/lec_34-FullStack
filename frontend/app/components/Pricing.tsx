@@ -55,7 +55,9 @@ const Pricing = () => {
     <section className="bg-linear-to-br from-blue-50 via-white to-cyan-50">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900">Pricing</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900">
+            Pricing
+          </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-lg text-gray-600">
             Choose the perfect plan for your needs. All plans include our core features.
           </p>
@@ -70,9 +72,15 @@ const Pricing = () => {
         </div>
         
         <div className="flex flex-wrap -m-4">
-          {plans.map((plan, index) => (
-            <div key={index} className="p-4 xl:w-1/4 md:w-1/2 w-full">
-              <div className={`h-full p-6 rounded-2xl ${plan.popular ? 'border-2 border-blue-500 shadow-xl' : 'border-2 border-gray-300 shadow-lg'} flex flex-col relative overflow-hidden bg-white hover:shadow-2xl transition-shadow`}>
+          {plans.map((plan) => (
+            <div key={plan.name} className="p-4 xl:w-1/4 md:w-1/2 w-full">
+              <div
+                className={`h-full p-6 rounded-2xl ${
+                  plan.popular
+                    ? 'border-2 border-blue-500 shadow-xl'
+                    : 'border-2 border-gray-300 shadow-lg'
+                } flex flex-col relative overflow-hidden bg-white hover:shadow-2xl transition-shadow`}
+              >
                 {plan.popular && (
                   <span className="bg-linear-to-r from-blue-500 to-cyan-400 text-white px-4 py-1 tracking-widest text-xs font-semibold absolute right-0 top-0 rounded-bl-lg">
                     POPULAR
@@ -86,15 +94,25 @@ const Pricing = () => {
                 <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-bold">
                   <span>{plan.price}</span>
                   {plan.period && (
-                    <span className="text-lg ml-1 font-normal text-gray-500">{plan.period}</span>
+                    <span className="text-lg ml-1 font-normal text-gray-500">
+                      {plan.period}
+                    </span>
                   )}
                 </h1>
                 
                 <div className="space-y-3 mb-6">
-                  {plan.features.map((feature, i) => (
-                    <p key={i} className="flex items-center text-gray-600">
+                  {plan.features.map((feature) => (
+                    <p key={feature} className="flex items-center text-gray-600">
                       <span className="w-5 h-5 mr-3 inline-flex items-center justify-center bg-linear-to-r from-blue-500 to-cyan-400 text-white rounded-full flex-shrink-0">
-                        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" className="w-3 h-3" viewBox="0 0 24 24">
+                        <svg
+                          fill="none"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2.5"
+                          className="w-3 h-3"
+                          viewBox="0 0 24 24"
+                        >
                           <path d="M20 6L9 17l-5-5"></path>
                         </svg>
                       </span>
@@ -103,9 +121,23 @@ const Pricing = () => {
                   ))}
                 </div>
                 
-                <button className={`flex items-center justify-center mt-auto ${plan.popular ? 'bg-linear-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500' : 'bg-gray-400 hover:bg-gray-500'} text-white font-semibold py-3 px-4 w-full focus:outline-none rounded-lg transition-all shadow-md hover:shadow-lg`}>
+                <button
+                  className={`flex items-center justify-center mt-auto ${
+                    plan.popular
+                      ? 'bg-linear-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500'
+                      : 'bg-gray-400 hover:bg-gray-500'
+                  } text-white font-semibold py-3 px-4 w-full focus:outline-none rounded-lg transition-all shadow-md hover:shadow-lg`}
+                >
                   Get Started
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="w-4 h-4 ml-2"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
