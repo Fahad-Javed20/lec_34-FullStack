@@ -2,10 +2,10 @@ import React from 'react';
 
 const NavComponent = () => {
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Contact Us', href: '#contactus' },
-    { name: 'Users', href: '#users' },
-    { name: 'About', href: '#about' }
+    { name: 'Home', href: 'home' },
+    { name: 'Contact Us', href: 'contactus' },
+    { name: 'Users', href: 'users' },
+    { name: 'About', href: 'about' }
   ];
 
   return (
