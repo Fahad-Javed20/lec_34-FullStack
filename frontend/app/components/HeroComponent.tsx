@@ -7,32 +7,33 @@ const HeroComponent = () => {
         
         <div className="lg:grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-4">
-            Knausgaard typewriter readymade marfa
+            Build faster, launch smarter with our modern web platform
           </h1>
           
           <p className="mb-8 text-lg text-gray-600 leading-relaxed">
-            Chillwave portland ugh, knausgaard fam polaroid iPhone. Man braid swag typewriter affogato, hella selvage wolf narwhal dreamcatcher.
+            Design, develop, and deploy high-performance applications using powerful tools built for speed, scalability, and real-world business needs.
           </p>
           
           <div className="flex w-full md:justify-start justify-center items-end mb-4">
             <div className="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
               <label htmlFor="hero-field" className="leading-7 text-sm font-medium text-gray-600">
-                Placeholder
+                Enter your email address
               </label>
               <input 
                 type="text" 
                 id="hero-field" 
                 name="hero-field" 
+                placeholder="you@example.com"
                 className="w-full bg-white rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-2 px-4 leading-8 transition-colors duration-200"
               />
             </div>
             <button className="px-8 py-3 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              Button
+              Get Started
             </button>
           </div>
           
           <p className="text-sm text-gray-500 mb-8 w-full">
-            Neutra shabby chic ramps, viral fixie.
+            Free to try. No credit card required.
           </p>
           
           <div className="flex lg:flex-row md:flex-col gap-4">
@@ -62,7 +63,7 @@ const HeroComponent = () => {
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
           <img 
             className="object-cover object-center rounded-2xl shadow-2xl" 
-            alt="hero" 
+            alt="Modern dashboard preview"
             src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=720&h=600&fit=crop"
           />
         </div>

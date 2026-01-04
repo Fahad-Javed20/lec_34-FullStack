@@ -3,28 +3,28 @@ import React from 'react';
 const FooterComponent = () => {
   const categories = [
     {
-      title: 'CATEGORIES',
-      links: ['First Link', 'Second Link', 'Third Link', 'Fourth Link']
+      title: 'PRODUCT',
+      links: ['Features', 'Pricing', 'Documentation', 'API Reference']
     },
     {
-      title: 'CATEGORIES',
-      links: ['First Link', 'Second Link', 'Third Link', 'Fourth Link']
+      title: 'COMPANY',
+      links: ['About Us', 'Careers', 'Press', 'Partners']
     },
     {
-      title: 'CATEGORIES',
-      links: ['First Link', 'Second Link', 'Third Link', 'Fourth Link']
+      title: 'RESOURCES',
+      links: ['Blog', 'Newsletter', 'Events', 'Help Center']
     },
     {
-      title: 'CATEGORIES',
-      links: ['First Link', 'Second Link', 'Third Link', 'Fourth Link']
+      title: 'SUPPORT',
+      links: ['Contact', 'FAQ', 'Live Chat', 'Status']
     },
     {
-      title: 'CATEGORIES',
-      links: ['First Link', 'Second Link', 'Third Link', 'Fourth Link']
+      title: 'LEGAL',
+      links: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Licenses']
     },
     {
-      title: 'CATEGORIES',
-      links: ['First Link', 'Second Link', 'Third Link', 'Fourth Link']
+      title: 'SOCIAL',
+      links: ['Twitter', 'LinkedIn', 'Facebook', 'Instagram']
     }
   ];
 
@@ -56,7 +56,7 @@ const FooterComponent = () => {
           <div className="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
             <div className="relative sm:w-64 w-40 sm:mr-4 mr-2">
               <label htmlFor="footer-field" className="leading-7 text-sm text-gray-600 font-medium">
-                Placeholder
+                Email Address
               </label>
               <input 
                 type="text" 
@@ -66,12 +66,12 @@ const FooterComponent = () => {
               />
             </div>
             <button className="px-6 py-3 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              Button
+              Subscribe
             </button>
             <p className="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">
-              Bitters chicharrones fanny pack
+              Join our newsletter for updates
               <br className="lg:block hidden" />
-              waistcoat green juice
+              and exclusive content
             </p>
           </div>
           <span className="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto gap-4">
@@ -104,13 +104,10 @@ const FooterComponent = () => {
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">
-            © 2020 Tailblocks —
-            <a href="https://twitter.com/knyttneve" className="text-gray-600 ml-1 hover:text-blue-600 transition-colors" target="_blank" rel="noopener noreferrer">
-              @knyttneve
-            </a>
+            © 2026 NextGen — All rights reserved
           </p>
           <span className="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">
-            Enamel pin tousled raclette tacos irony
+            Built with passion and innovation
           </span>
         </div>
       </div>
