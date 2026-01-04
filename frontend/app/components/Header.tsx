@@ -1,70 +1,85 @@
 import React from "react";
+import { Search } from "lucide-react";
 
 const Header = () => {
+
   return (
-    <header className="bg-white shadow-lg border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="relative">
-              <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-cyan-400 rounded-xl blur opacity-50 group-hover:opacity-75 transition-opacity"></div>
-              <div className="relative bg-linear-to-r from-blue-500 to-cyan-400 p-2 rounded-xl shadow-md group-hover:shadow-xl transition-all group-hover:scale-105">
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        
+        * {
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+      `}</style>
+
+      <header className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center gap-3 cursor-pointer">
+              <div className="relative flex items-center justify-center w-10 h-10 bg-blue-600 rounded-lg shadow-md">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8 text-white"
-                  fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
+                  className="w-6 h-6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
+                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                    fill="white"
+                    opacity="0.9"
+                  />
+                  <path
+                    d="M2 17L12 22L22 17"
+                    stroke="white"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                    opacity="0.7"
+                  />
+                  <path
+                    d="M2 12L12 17L22 12"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.7"
                   />
                 </svg>
               </div>
+
+              <div className="flex flex-col">
+                <h1 className="text-xl font-medium text-gray-900 tracking-normal leading-tight">
+                  NextGen
+                </h1>
+                <p className="text-xs text-gray-600 font-normal tracking-normal leading-tight">
+                  Innovate Together
+                </p>
+              </div>
             </div>
 
-            <div>
-              <h1 className="text-2xl font-bold bg-linear-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
-                NextGen
-              </h1>
-              <p className="text-xs text-gray-500 font-medium">
-                Innovate Together
-              </p>
-            </div>
-          </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 bg-gray-50 rounded border border-gray-300 px-3 py-1.5 shadow-sm">
+                <Search className="w-5 h-5 text-gray-500" strokeWidth={2} />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="bg-transparent outline-none text-sm text-gray-900 placeholder-gray-500 w-48 font-normal"
+                />
+              </div>
 
-          <div className="flex items-center gap-3">
-            <button className="px-6 py-2.5 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-200 relative overflow-hidden group">
-              <span className="relative z-10">Sign In</span>
-              <div className="absolute inset-0 bg-linear-to-r from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
+              <button className="px-4 py-2 text-blue-600 font-medium rounded hover:bg-blue-50 transition-colors text-sm uppercase tracking-wide">
+                Sign In
+              </button>
 
-            <button className="px-6 py-2.5 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-cyan-500 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 relative overflow-hidden group">
-              <span className="relative z-10 flex items-center gap-2">
+              <button className="px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors text-sm uppercase tracking-wide shadow-md hover:shadow-lg">
                 Get Started
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

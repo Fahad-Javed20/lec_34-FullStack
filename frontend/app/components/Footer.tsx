@@ -1,117 +1,171 @@
 import React from 'react';
+import { Mail, Send } from 'lucide-react';
 
 const Footer = () => {
   const categories = [
     {
-      title: 'PRODUCT',
+      title: 'Product',
       links: ['Features', 'Pricing', 'Documentation', 'API Reference']
     },
     {
-      title: 'COMPANY',
+      title: 'Company',
       links: ['About Us', 'Careers', 'Press', 'Partners']
     },
     {
-      title: 'RESOURCES',
+      title: 'Resources',
       links: ['Blog', 'Newsletter', 'Events', 'Help Center']
     },
     {
-      title: 'SUPPORT',
+      title: 'Support',
       links: ['Contact', 'FAQ', 'Live Chat', 'Status']
     },
     {
-      title: 'LEGAL',
+      title: 'Legal',
       links: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Licenses']
     },
     {
-      title: 'SOCIAL',
+      title: 'Social',
       links: ['Twitter', 'LinkedIn', 'Facebook', 'Instagram']
     }
   ];
 
   return (
-    <footer className="bg-white">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex flex-wrap md:text-left text-center -mb-10 -mx-4">
-          {categories.map((category, index) => (
-            <div key={index} className="lg:w-1/6 md:w-1/2 w-full px-4">
-              <h2 className="font-semibold text-gray-900 tracking-widest text-sm mb-4">
-                {category.title}
-              </h2>
-              <nav className="list-none mb-10 space-y-2">
-                {category.links.map((link, i) => (
-                  <li key={i}>
-                    <a className="text-gray-600 hover:text-blue-600 transition-colors cursor-pointer">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </nav>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+        * {
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+      `}</style>
+
+      <footer className="bg-linear-to-b from-white to-gray-50 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-md">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-6 h-6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                    fill="white"
+                    opacity="0.9"
+                  />
+                  <path
+                    d="M2 17L12 22L22 17"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.7"
+                  />
+                  <path
+                    d="M2 12L12 17L22 12"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-gray-900">NextGen</h2>
+                <p className="text-xs text-gray-600">Innovate Together</p>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-      
-      <div className="border-t border-gray-200">
-        <div className="container px-5 py-8 flex flex-wrap mx-auto items-center">
-          <div className="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
-            <div className="relative sm:w-64 w-40 sm:mr-4 mr-2">
-              <label htmlFor="footer-field" className="leading-7 text-sm text-gray-600 font-medium">
-                Email Address
-              </label>
-              <input 
-                type="text" 
-                id="footer-field" 
-                name="footer-field" 
-                className="w-full bg-white rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200"
-              />
-            </div>
-            <button className="px-6 py-3 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              Subscribe
-            </button>
-            <p className="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">
-              Join our newsletter for updates
-              <br className="lg:block hidden" />
-              and exclusive content
+            <p className="text-gray-600 max-w-md text-sm leading-relaxed">
+              Build the future of web with powerful tools, seamless deployment, and unlimited scalability.
             </p>
           </div>
-          <span className="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto gap-4">
-            <a className="text-gray-500 hover:text-blue-600 transition-colors cursor-pointer">
-              <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-              </svg>
-            </a>
-            <a className="text-gray-500 hover:text-blue-600 transition-colors cursor-pointer">
-              <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-              </svg>
-            </a>
-            <a className="text-gray-500 hover:text-blue-600 transition-colors cursor-pointer">
-              <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-              </svg>
-            </a>
-            <a className="text-gray-500 hover:text-blue-600 transition-colors cursor-pointer">
-              <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0" className="w-6 h-6" viewBox="0 0 24 24">
-                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-                <circle cx="4" cy="4" r="2" stroke="none"></circle>
-              </svg>
-            </a>
-          </span>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
+            {categories.map((category, index) => (
+              <div key={index}>
+                <h3 className="font-semibold text-gray-900 text-sm mb-4">
+                  {category.title}
+                </h3>
+                <ul className="space-y-3">
+                  {category.links.map((link, i) => (
+                    <li key={i}>
+                      <a className="text-gray-600 hover:text-blue-600 transition-colors cursor-pointer text-sm hover:underline">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-linear-to-r from-blue-600 to-blue-700 rounded-2xl p-8 shadow-lg">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <Mail className="w-5 h-5 text-white" strokeWidth={2} />
+                  <h3 className="text-xl font-bold text-white">Stay Updated</h3>
+                </div>
+                <p className="text-blue-100 text-sm">
+                  Join our newsletter for updates and exclusive content
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-3 md:min-w-96">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email"
+                  className="flex-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-sm outline-none text-white placeholder-blue-200 py-3 px-4 focus:bg-white/20 focus:border-white/40 transition-all"
+                />
+                <button className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-md flex items-center justify-center gap-2 text-sm">
+                  Subscribe
+                  <Send className="w-4 h-4" strokeWidth={2} />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div className="bg-gray-100">
-        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-          <p className="text-gray-500 text-sm text-center sm:text-left">
-            © 2026 NextGen — All rights reserved
-          </p>
-          <span className="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">
-            Built with passion and innovation
-          </span>
+
+        <div className="border-t border-gray-200 bg-white">
+          <div className="max-w-7xl mx-auto px-6 py-6">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-gray-600">
+                © 2026 NextGen. All rights reserved.
+              </p>
+              
+              <div className="flex items-center gap-4">
+                <a className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-blue-600 flex items-center justify-center transition-colors group cursor-pointer">
+                  <svg className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-blue-600 flex items-center justify-center transition-colors group cursor-pointer">
+                  <svg className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                  </svg>
+                </a>
+                <a className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-blue-600 flex items-center justify-center transition-colors group cursor-pointer">
+                  <svg className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                  </svg>
+                </a>
+                <a className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-blue-600 flex items-center justify-center transition-colors group cursor-pointer">
+                  <svg className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+              </div>
+
+              <p className="text-sm text-gray-500">
+                Built with passion and innovation
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 

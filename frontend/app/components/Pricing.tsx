@@ -1,15 +1,16 @@
 import React from 'react';
+import { Check, Star } from 'lucide-react';
 
 const Pricing = () => {
   const plans = [
     {
-      name: 'STARTER',
+      name: 'Starter',
       price: 'Free',
       features: ['Up to 5 projects', 'Basic analytics', 'Community support'],
       popular: false,
     },
     {
-      name: 'PRO',
+      name: 'Pro',
       price: '$38',
       period: '/mo',
       features: [
@@ -21,7 +22,7 @@ const Pricing = () => {
       popular: true,
     },
     {
-      name: 'BUSINESS',
+      name: 'Business',
       price: '$56',
       period: '/mo',
       features: [
@@ -34,7 +35,7 @@ const Pricing = () => {
       popular: false,
     },
     {
-      name: 'ENTERPRISE',
+      name: 'Enterprise',
       price: '$72',
       period: '/mo',
       features: [
@@ -49,94 +50,99 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="bg-linear-to-br from-blue-50 via-white to-cyan-50">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex flex-col text-center w-full mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900">
-            Pricing
-          </h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-lg text-gray-600">
-            Choose the perfect plan for your needs. All plans include our core features.
-          </p>
-          <div className="flex mx-auto border-2 border-blue-500 rounded-lg overflow-hidden mt-6 shadow-md">
-            <button className="py-2 px-6 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold">
-              Monthly
-            </button>
-            <button className="py-2 px-6 bg-white text-gray-700 font-semibold hover:bg-gray-50 transition-colors">
-              Annually
-            </button>
-          </div>
-        </div>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+        
+        * {
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+      `}</style>
 
-        <div className="flex flex-wrap -m-4">
-          {plans.map((plan) => (
-            <div key={plan.name} className="p-4 xl:w-1/4 md:w-1/2 w-full">
+      <section className="bg-linear-to-b from-white to-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              Choose the perfect plan for your needs. All plans include our core features.
+            </p>
+            
+            <div className="inline-flex items-center bg-gray-100 rounded-lg p-1 border border-gray-200">
+              <button className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md text-sm shadow-sm">
+                Monthly
+              </button>
+              <button className="px-6 py-2 text-gray-700 font-medium rounded-md text-sm hover:bg-gray-200 transition-colors">
+                Annually
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {plans.map((plan) => (
               <div
-                className={`h-full p-6 rounded-2xl ${
+                key={plan.name}
+                className={`relative bg-white rounded-xl border-2 ${
                   plan.popular
-                    ? 'border-2 border-blue-500 shadow-xl'
-                    : 'border-2 border-gray-300 shadow-lg'
-                } flex flex-col relative overflow-hidden bg-white hover:shadow-2xl transition-shadow`}
+                    ? 'border-blue-600 shadow-xl'
+                    : 'border-gray-200 shadow-md'
+                } p-6 flex flex-col hover:shadow-lg transition-shadow`}
               >
                 {plan.popular && (
-                  <span className="bg-linear-to-r from-blue-500 to-cyan-400 text-white px-4 py-1 tracking-widest text-xs font-semibold absolute right-0 top-0 rounded-bl-lg">
-                    POPULAR
-                  </span>
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <div className="flex items-center gap-1 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-semibold shadow-md">
+                      <Star className="w-3 h-3 fill-white" strokeWidth={0} />
+                      POPULAR
+                    </div>
+                  </div>
                 )}
 
-                <h2 className="text-sm tracking-widest font-semibold mb-2 text-gray-600">
+                <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-4">
                   {plan.name}
-                </h2>
+                </h3>
 
-                <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-bold">
-                  <span>{plan.price}</span>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold text-gray-900">{plan.price}</span>
                   {plan.period && (
-                    <span className="text-lg ml-1 font-normal text-gray-500">
+                    <span className="text-lg text-gray-500 font-normal ml-1">
                       {plan.period}
                     </span>
                   )}
-                </h1>
-
-                <div className="space-y-3 mb-6">
-                  {plan.features.map((feature) => (
-                    <p key={feature} className="flex items-center text-gray-600">
-                      <span className="w-5 h-5 mr-3 inline-flex items-center justify-center bg-linear-to-r from-blue-500 to-cyan-400 text-white rounded-full">
-                        <svg
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2.5"
-                          className="w-3 h-3"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M20 6L9 17l-5-5" />
-                        </svg>
-                      </span>
-                      {feature}
-                    </p>
-                  ))}
                 </div>
 
+                <ul className="space-y-3 mb-8 grow">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3 text-sm text-gray-700">
+                      <div className="shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                        <Check className="w-3.5 h-3.5 text-green-600" strokeWidth={3} />
+                      </div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
                 <button
-                  className={`mt-auto flex items-center justify-center ${
+                  className={`w-full py-3 px-4 font-semibold rounded-lg transition-colors text-sm ${
                     plan.popular
-                      ? 'bg-linear-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500'
-                      : 'bg-gray-400 hover:bg-gray-500'
-                  } text-white font-semibold py-3 px-4 w-full rounded-lg shadow-md hover:shadow-lg transition-all`}
+                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
+                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-300'
+                  }`}
                 >
                   Get Started
                 </button>
 
-                <p className="text-xs text-gray-500 mt-3 text-center">
+                <p className="text-xs text-gray-500 text-center mt-3">
                   No credit card required
                 </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

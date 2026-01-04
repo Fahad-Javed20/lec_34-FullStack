@@ -1,74 +1,74 @@
 import React from 'react';
+import { Play, Info, ChevronRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="bg-linear-to-br from-blue-50 via-white to-cyan-50">
-      <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
         
-        <div className="lg:grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-4">
-            Build faster, launch smarter with our modern web platform
-          </h1>
-          
-          <p className="mb-8 text-lg text-gray-600 leading-relaxed">
-            Design, develop, and deploy high-performance applications using powerful tools built for speed, scalability, and real-world business needs.
-          </p>
-          
-          <div className="flex w-full md:justify-start justify-center items-end mb-4">
-            <div className="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
-              <label htmlFor="hero-field" className="leading-7 text-sm font-medium text-gray-600">
-                Enter your email address
-              </label>
-              <input 
-                type="text" 
-                id="hero-field" 
-                name="hero-field" 
-                placeholder="you@example.com"
-                className="w-full bg-white rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-2 px-4 leading-8 transition-colors duration-200"
-              />
-            </div>
-            <button className="px-8 py-3 bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              Get Started
-            </button>
-          </div>
-          
-          <p className="text-sm text-gray-500 mb-8 w-full">
-            Free to try. No credit card required.
-          </p>
-          
-          <div className="flex lg:flex-row md:flex-col gap-4">
-            <button className="bg-white inline-flex py-3 px-6 rounded-xl items-center hover:bg-gray-50 transition-colors shadow-md border-2 border-gray-200 hover:border-blue-500">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-8 h-8 text-gray-700" viewBox="0 0 512 512">
-                <path d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z"></path>
-              </svg>
-              <span className="ml-4 flex items-start flex-col leading-none">
-                <span className="text-xs text-gray-600 mb-1">GET IT ON</span>
-                <span className="font-semibold text-gray-900">Google Play</span>
-              </span>
-            </button>
-            
-            <button className="bg-white inline-flex py-3 px-6 rounded-xl items-center hover:bg-gray-50 transition-colors shadow-md border-2 border-gray-200 hover:border-blue-500">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-8 h-8 text-gray-700" viewBox="0 0 305 305">
-                <path d="M40.74 112.12c-25.79 44.74-9.4 112.65 19.12 153.82C74.09 286.52 88.5 305 108.24 305c.37 0 .74 0 1.13-.02 9.27-.37 15.97-3.23 22.45-5.99 7.27-3.1 14.8-6.3 26.6-6.3 11.22 0 18.39 3.1 25.31 6.1 6.83 2.95 13.87 6 24.26 5.81 22.23-.41 35.88-20.35 47.92-37.94a168.18 168.18 0 0021-43l.09-.28a2.5 2.5 0 00-1.33-3.06l-.18-.08c-3.92-1.6-38.26-16.84-38.62-58.36-.34-33.74 25.76-51.6 31-54.84l.24-.15a2.5 2.5 0 00.7-3.51c-18-26.37-45.62-30.34-56.73-30.82a50.04 50.04 0 00-4.95-.24c-13.06 0-25.56 4.93-35.61 8.9-6.94 2.73-12.93 5.09-17.06 5.09-4.64 0-10.67-2.4-17.65-5.16-9.33-3.7-19.9-7.9-31.1-7.9l-.79.01c-26.03.38-50.62 15.27-64.18 38.86z"></path>
-                <path d="M212.1 0c-15.76.64-34.67 10.35-45.97 23.58-9.6 11.13-19 29.68-16.52 48.38a2.5 2.5 0 002.29 2.17c1.06.08 2.15.12 3.23.12 15.41 0 32.04-8.52 43.4-22.25 11.94-14.5 17.99-33.1 16.16-49.77A2.52 2.52 0 00212.1 0z"></path>
-              </svg>
-              <span className="ml-4 flex items-start flex-col leading-none">
-                <span className="text-xs text-gray-600 mb-1">Download on the</span>
-                <span className="font-semibold text-gray-900">App Store</span>
-              </span>
-            </button>
-          </div>
-        </div>
-        
-        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+        * {
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+      `}</style>
+
+      <section className="relative h-screen w-full overflow-hidden">
+        <div className="absolute inset-0">
           <img 
-            className="object-cover object-center rounded-2xl shadow-2xl" 
-            alt="Modern dashboard preview"
-            src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=720&h=600&fit=crop"
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&q=80"
+            alt="Hero background"
+            className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-linear-to-r from-black via-black/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent"></div>
         </div>
-      </div>
-    </section>
+
+        <div className="relative h-full max-w-7xl mx-auto px-6 flex items-center">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-600/90 backdrop-blur-sm rounded text-xs font-semibold text-white mb-6 uppercase tracking-wide">
+              New Release
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              Build the Future of Web
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-xl">
+              Experience the next generation of web development with powerful tools, seamless deployment, and unlimited scalability. Start building today.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mb-8">
+              <button className="flex items-center gap-2 px-8 py-3 bg-white text-black font-semibold rounded hover:bg-gray-200 transition-colors text-lg">
+                <Play className="w-5 h-5 fill-black" strokeWidth={0} />
+                Get Started
+              </button>
+              
+              <button className="flex items-center gap-2 px-8 py-3 bg-gray-500/30 backdrop-blur-sm text-white font-semibold rounded hover:bg-gray-500/50 transition-colors text-lg border border-gray-400">
+                <Info className="w-5 h-5" strokeWidth={2} />
+                More Info
+              </button>
+            </div>
+
+            <div className="flex flex-wrap gap-6 text-sm text-gray-300">
+              <div className="flex items-center gap-2">
+                <ChevronRight className="w-4 h-4 text-red-500" strokeWidth={3} />
+                <span>No credit card required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ChevronRight className="w-4 h-4 text-red-500" strokeWidth={3} />
+                <span>Free 14-day trial</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ChevronRight className="w-4 h-4 text-red-500" strokeWidth={3} />
+                <span>Cancel anytime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-white to-transparent"></div>
+      </section>
+    </>
   );
 };
 
