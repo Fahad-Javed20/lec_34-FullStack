@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import type { UserType } from "~/types/UserType";
+import { fetchAllUsers } from "~/api/userApi";
 
 const Users = () => {
   const [users, setUsers] = useState<UserType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch("https://dummyjson.com/users");
-        const data = await res.json();
-        setUsers(data.users || []);
-      } catch (error) {
-        console.error("Failed to fetch users:", error);
-      } finally {
-        setLoading(false);
-      }
+    const loadUsers = async () => {
+      const allUsers = await fetchAllUsers();
+      setUsers(allUsers);
+      setLoading(false);
     };
-    fetchUsers();
+
+    loadUsers();
   }, []);
 
   if (loading) {
