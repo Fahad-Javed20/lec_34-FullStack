@@ -40,7 +40,7 @@ const Users = () => {
     <div className="p-6">
       <div className="overflow-x-auto rounded-xl shadow-md border border-gray-200">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-linear-to-r from-blue-600 to-cyan-500 text-white">
+          <thead className="bg-blue-600 text-white">
             <tr>
               <th className="px-6 py-3 text-left text-sm font-semibold">First Name</th>
               <th className="px-6 py-3 text-left text-sm font-semibold">Last Name</th>
@@ -59,10 +59,10 @@ const Users = () => {
                 <td className="px-6 py-2 text-blue-600 underline">{user.email}</td>
                 <td className="px-6 py-2">
                   <span
-                    className={`px-4 py-1 rounded-full text-sm font-semibold shadow-sm ${
+                    className={`inline-block w-20 text-center px-2 py-1 rounded-full text-sm font-semibold ${
                       user.gender === "male"
-                        ? "bg-linear-to-r from-blue-200 to-blue-400 text-blue-900"
-                        : "bg-linear-to-r from-pink-200 to-pink-400 text-pink-900"
+                        ? "bg-blue-200 text-blue-800"
+                        : "bg-pink-200 text-pink-800"
                     }`}
                   >
                     {user.gender.charAt(0).toUpperCase() + user.gender.slice(1)}
