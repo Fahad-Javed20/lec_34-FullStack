@@ -1,6 +1,6 @@
 import FooterComponent from "~/components/FooterComponent"
 import HeaderComponent from "~/components/HeaderComponent"
-import NavComponent from "~/components/NavComponents"
+import NavComponent from "~/components/NavComponent"
 
 
 const Aboutpage = () => {
