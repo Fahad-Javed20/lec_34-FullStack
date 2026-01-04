@@ -1,6 +1,6 @@
-import FooterComponent from "~/components/FooterComponent"
-import HeaderComponent from "~/components/HeaderComponent"
-import NavComponent from "~/components/NavComponent"
+import FooterComponent from "~/components/Footer"
+import HeaderComponent from "~/components/Header"
+import NavComponent from "~/components/Navbar"
 
 const Contactpage = () => {
   return (

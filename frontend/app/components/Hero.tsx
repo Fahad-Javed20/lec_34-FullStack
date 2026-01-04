@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeroComponent = () => {
+const Hero = () => {
   return (
     <section className="bg-linear-to-br from-blue-50 via-white to-cyan-50">
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
@@ -72,4 +72,4 @@ const HeroComponent = () => {
   );
 };
 
-export default HeroComponent;
+export default Hero;

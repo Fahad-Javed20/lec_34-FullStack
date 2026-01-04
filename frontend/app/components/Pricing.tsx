@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PricingComponent = () => {
+const Pricing = () => {
   const plans = [
     {
       name: 'STARTER',
@@ -123,4 +123,4 @@ const PricingComponent = () => {
   );
 };
 
-export default PricingComponent;
+export default Pricing;

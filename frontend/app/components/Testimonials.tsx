@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TestimonialsComponent = () => {
+const Testimonials = () => {
   const testimonials = [
     {
       name: 'SARAH JOHNSON',
@@ -51,4 +51,4 @@ const TestimonialsComponent = () => {
   );
 };
 
-export default TestimonialsComponent;
+export default Testimonials;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FooterComponent = () => {
+const Footer = () => {
   const categories = [
     {
       title: 'PRODUCT',
@@ -115,4 +115,4 @@ const FooterComponent = () => {
   );
 };
 
-export default FooterComponent;
+export default Footer;

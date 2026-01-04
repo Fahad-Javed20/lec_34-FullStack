@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavComponent = () => {
+const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Contact Us', href: 'contactus' },
@@ -34,4 +34,4 @@ const NavComponent = () => {
   );
 };
 
-export default NavComponent;
+export default Navbar;

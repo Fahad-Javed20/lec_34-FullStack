@@ -1,9 +1,9 @@
-import FooterComponent from "~/components/FooterComponent"
-import HeaderComponent from "~/components/HeaderComponent"
-import HeroComponent from "~/components/HeroComponent"
-import NavComponent from "~/components/NavComponent"
-import PricingComponent from "~/components/PricingComponent"
-import TestimonialsComponent from "~/components/TestimonialsComponent"
+import FooterComponent from "~/components/Footer"
+import HeaderComponent from "~/components/Header"
+import HeroComponent from "~/components/Hero"
+import NavComponent from "~/components/Navbar"
+import PricingComponent from "~/components/Pricing"
+import TestimonialsComponent from "~/components/Testimonials"
 
 
 const Homepage = () => {
