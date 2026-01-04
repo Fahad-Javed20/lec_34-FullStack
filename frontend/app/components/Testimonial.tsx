@@ -1,5 +1,5 @@
 
-const Testimonials = () => {
+const Testimonial = () => {
   const testimonials = [
     {
       name: 'SARAH JOHNSON',
@@ -50,4 +50,4 @@ const Testimonials = () => {
   );
 };
 
-export default Testimonials;
+export default Testimonial;

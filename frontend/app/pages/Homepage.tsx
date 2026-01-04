@@ -3,7 +3,7 @@ import Header from "~/components/Header"
 import Hero from "~/components/Hero"
 import Navbar from "~/components/Navbar"
 import Pricing from "~/components/Pricing"
-import Testimonials from "~/components/Testimonials"
+import Testimonial from "~/components/Testimonial"
 import Users from "~/components/Users"
 
 
@@ -15,7 +15,7 @@ const Homepage = () => {
       <Hero/>
       <Pricing/>
       <Users/>
-      <Testimonials/>
+      <Testimonial/>
       <Footer/>
     </div>
   )
