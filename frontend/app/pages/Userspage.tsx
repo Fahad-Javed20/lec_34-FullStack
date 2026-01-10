@@ -7,6 +7,7 @@ const Userspage = () => {
     <div>
       <Header/>
       <Navbar/>
+      <Userrs/>
       <Footer/>
       </div>
   )

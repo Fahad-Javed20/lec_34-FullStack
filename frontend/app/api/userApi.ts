@@ -3,8 +3,3 @@ export const fetchAllUsers = async ()=>{
     const data = await response.json();
     return data.users
 }
-
-
-
-
-
