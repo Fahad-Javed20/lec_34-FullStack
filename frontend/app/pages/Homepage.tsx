@@ -14,7 +14,6 @@ const Homepage = () => {
       <Navbar/>
       <Hero/>
       <Pricing/>
-      <Users/>
       <Testimonial/>
       <Footer/>
     </div>
