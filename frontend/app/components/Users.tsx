@@ -1,4 +1,3 @@
-// Users.tsx
 import { useEffect, useState } from "react";
 import type { UserType } from "~/types/UserType";
 import { fetchAllUsers } from "~/api/userApi";
@@ -6,101 +5,94 @@ import { fetchAllUsers } from "~/api/userApi";
 const Users = () => {
   const [users, setUsers] = useState<UserType[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadUsers = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        const allUsers = await fetchAllUsers();
-        console.log("Fetched users:", allUsers);
-        console.log("Number of users:", allUsers.length);
-        
-        setUsers(allUsers);
-      } catch (err) {
-        console.error("Error loading users:", err);
-        setError("Failed to load users");
-      } finally {
-        setLoading(false);
-      }
+      const allUsers = await fetchAllUsers();
+      setUsers(allUsers);
+      setLoading(false);
     };
-    
     loadUsers();
   }, []);
 
+  const getInitials = (firstName?: string, lastName?: string) => {
+    const first = firstName?.charAt(0)?.toUpperCase() || '';
+    const last = lastName?.charAt(0)?.toUpperCase() || '';
+    return first + last || '??';
+  };
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading users...</p>
         </div>
       </div>
     );
   }
 
-  if (error) {
+  if (!users.length) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
-          <p className="text-red-800 font-semibold">Error: {error}</p>
-          <button 
-            onClick={() => window.location.reload()}
-            className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (!users || users.length === 0) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-center">
-          <p className="text-gray-600 text-lg">No users found.</p>
-          <button 
-            onClick={() => window.location.reload()}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Refresh
-          </button>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100">
+        <p className="text-gray-500 text-lg">No users found</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">
-          Users ({users.length})
-        </h1>
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Our Users</h1>
+          <p className="text-gray-600">{users.length} {users.length === 1 ? 'user' : 'users'} registered</p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {users.map((user) => (
             <div
               key={user._id}
-              className="bg-white rounded-xl shadow hover:shadow-lg transition-shadow p-6"
+              className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
             >
-              <h2 className="text-lg font-semibold text-gray-900">
-                {user.firstName} {user.lastName}
-              </h2>
-
-              <p className="text-sm text-gray-600 mt-1">{user.email}</p>
-
-              <span
-                className={`inline-block mt-3 px-3 py-1 text-xs font-semibold rounded-full ${
-                  user.gender.toLowerCase() === "male"
-                    ? "bg-blue-100 text-blue-700"
-                    : "bg-pink-100 text-pink-700"
-                }`}
-              >
-                {user.gender}
-              </span>
+              <div className={`h-32 ${
+                user.gender?.toLowerCase() === "male"
+                  ? "bg-linear-to-br from-blue-400 to-blue-600"
+                  : user.gender?.toLowerCase() === "female"
+                  ? "bg-linear-to-br from-pink-400 to-pink-600"
+                  : "bg-linear-to-br from-gray-400 to-gray-600"
+              }`}>
+                <div className="h-full flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center border-4 border-white/50 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-3xl font-bold text-white">
+                      {getInitials(user.firstName, user.lastName)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <h2 className="text-xl font-bold text-gray-900 mb-1">
+                  {user.firstName || 'Unknown'} {user.lastName || ''}
+                </h2>
+                
+                <p className="text-sm text-gray-500 mb-4 truncate">
+                  {user.email || 'No email'}
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`px-4 py-1.5 text-xs font-semibold rounded-full ${
+                      user.gender?.toLowerCase() === "male"
+                        ? "bg-blue-50 text-blue-700 border border-blue-200"
+                        : user.gender?.toLowerCase() === "female"
+                        ? "bg-pink-50 text-pink-700 border border-pink-200"
+                        : "bg-gray-50 text-gray-700 border border-gray-200"
+                    }`}
+                  >
+                    {user.gender || 'Not specified'}
+                  </span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
