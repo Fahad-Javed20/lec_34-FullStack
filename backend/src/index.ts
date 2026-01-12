@@ -18,5 +18,5 @@ app.use("/api/users", userRoutes);
 connectDB();
 
 app.listen(PORT, () => {
-  console.log(`Server is listing Port ${PORT}`);
+  console.log(`Server is listening on Port ${PORT}`);
 });
