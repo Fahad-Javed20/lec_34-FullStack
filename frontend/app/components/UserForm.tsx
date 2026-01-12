@@ -22,6 +22,7 @@ const UserForm = ({ onAddUser, editingUser, onUpdateUser, onCancelEdit }: UserFo
     formState: { errors },
   } = useForm<UserType>();
 
+  // Populate form when editingUser changes
   useEffect(() => {
     if (editingUser) {
       setValue("firstName", editingUser.firstName || "");
@@ -37,18 +38,26 @@ const UserForm = ({ onAddUser, editingUser, onUpdateUser, onCancelEdit }: UserFo
     if (editingUser && onUpdateUser) {
       // Update existing user
       const updatedUser = { ...data, _id: editingUser._id };
-      onUpdateUser(updatedUser);
+      await onUpdateUser(updatedUser);
+      reset();
     } else {
       // Add new user
-      const response = await fetch("http://localhost:3000/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        const newUser = await response.json();
-        onAddUser(newUser);
-        reset();
+      try {
+        const response = await fetch("http://localhost:3000/api/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        if (response.ok) {
+          const newUser = await response.json();
+          onAddUser(newUser);
+          reset();
+        } else {
+          alert("Failed to create user");
+        }
+      } catch (error) {
+        console.error("Error creating user:", error);
+        alert("Error creating user");
       }
     }
   };
@@ -264,13 +273,14 @@ const UserForm = ({ onAddUser, editingUser, onUpdateUser, onCancelEdit }: UserFo
 
           {!editingUser && (
             <p className="text-center text-gray-400 text-sm">
-            Already have an account?{" "}
+              Already have an account?{" "}
               <a
                 href="#"
-                className="text-blue-500 hover:text-blue-400 transition-colors">
+                className="text-blue-500 hover:text-blue-400 transition-colors"
+              >
                 Sign in
               </a>
-              </p>
+            </p>
           )}
         </form>
 

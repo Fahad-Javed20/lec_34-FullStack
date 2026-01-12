@@ -26,30 +26,49 @@ const Userspage = () => {
   };
 
   const handleDeleteUser = async (userId: string) => {
-    const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      setUsers((prev) => prev.filter((user) => user._id !== userId));
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setUsers((prev) => prev.filter((user) => user._id !== userId));
+        alert("User deleted successfully!");
+      } else {
+        alert("Failed to delete user");
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Error deleting user");
     }
   };
 
   const handleUpdateUser = async (updatedUser: UserType) => {
-    const response = await fetch(`http://localhost:3000/api/users/${updatedUser._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedUser),
-    });
-    if (response.ok) {
-      const updated = await response.json();
-      setUsers((prev) => prev.map((user) => (user._id === updatedUser._id ? updated : user)));
-      setEditingUser(null); // Clear editing state
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/${updatedUser._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedUser),
+      });
+      
+      if (response.ok) {
+        const updated = await response.json();
+        setUsers((prev) => 
+          prev.map((user) => (user._id === updatedUser._id ? updated : user))
+        );
+        setEditingUser(null);
+        alert("User updated successfully!");
+      } else {
+        console.error("Failed to update user");
+        alert("Failed to update user");
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+      alert("Error updating user");
     }
   };
 
   const handleEditUser = (user: UserType) => {
     setEditingUser(user);
-    // Scroll to form
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
