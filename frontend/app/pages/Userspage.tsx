@@ -24,12 +24,14 @@ const Userspage = () => {
     setUsers((prev) => [...prev, newUser]);
   };
 
+ 
+
   return (
     <div>
       <Header />
       <Navbar />
       <UserForm onAddUser={handleAddUser} />
-      <Users users={users} />
+      <Users users={users}  />
       <Footer />
     </div>
   );
