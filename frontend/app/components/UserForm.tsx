@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
@@ -7,28 +8,58 @@ import type { UserType } from "~/types/UserType";
 
 interface UserFormProps {
   onAddUser: (user: UserType) => void;
+  editingUser?: UserType | null;
+  onUpdateUser?: (user: UserType) => void;
+  onCancelEdit?: () => void;
 }
 
-const UserForm = ({ onAddUser }: UserFormProps) => {
+const UserForm = ({ onAddUser, editingUser, onUpdateUser, onCancelEdit }: UserFormProps) => {
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<UserType>();
 
-  const onSubmit = async (data: UserType) => {
-    const response = await fetch("http://localhost:3000/api/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (response.ok) {
-      const newUser = await response.json();
-      onAddUser(newUser);
+  useEffect(() => {
+    if (editingUser) {
+      setValue("firstName", editingUser.firstName || "");
+      setValue("lastName", editingUser.lastName || "");
+      setValue("email", editingUser.email || "");
+      setValue("gender", editingUser.gender || "");
+    } else {
       reset();
     }
+  }, [editingUser, setValue, reset]);
+
+  const onSubmit = async (data: UserType) => {
+    if (editingUser && onUpdateUser) {
+      // Update existing user
+      const updatedUser = { ...data, _id: editingUser._id };
+      onUpdateUser(updatedUser);
+    } else {
+      // Add new user
+      const response = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const newUser = await response.json();
+        onAddUser(newUser);
+        reset();
+      }
+    }
   };
+
+  const handleCancel = () => {
+    reset();
+    if (onCancelEdit) {
+      onCancelEdit();
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -44,8 +75,14 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
               </svg>
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Create User</h1>
-          <p className="text-gray-400">Join NextGen and innovate together</p>
+          <h1 className="text-3xl font-bold text-white mb-2">
+            {editingUser ? "Update User" : "Create User"}
+          </h1>
+          <p className="text-gray-400">
+            {editingUser 
+              ? "Edit user information below" 
+              : "Join NextGen and innovate together"}
+          </p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -123,14 +160,14 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Password
+              Password {editingUser && <span className="text-gray-500">(leave blank to keep current)</span>}
             </label>
             <div className="relative">
               <LockIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
               <input
                 type="password"
                 {...register("password", {
-                  required: "Password is required",
+                  required: editingUser ? false : "Password is required",
                   minLength: {
                     value: 8,
                     message: "Password must be at least 8 characters",
@@ -142,7 +179,7 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
                   },
                 })}
                 className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
-                placeholder="Create a strong password"
+                placeholder={editingUser ? "Leave blank to keep current" : "Create a strong password"}
               />
             </div>
             {errors.password && (
@@ -193,35 +230,48 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
             )}
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
-          >
-            <span>Add User</span>
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex gap-3">
+            <button
+              type="submit"
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-          </button>
+              <span>{editingUser ? "Update User" : "Add User"}</span>
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </button>
 
-          <p className="text-center text-gray-400 text-sm">
+            {editingUser && (
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="px-6 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+              >
+                Cancel
+              </button>
+            )}
+          </div>
+
+          {!editingUser && (
+            <p className="text-center text-gray-400 text-sm">
             Already have an account?{" "}
-            <a
-              href="#"
-              className="text-blue-500 hover:text-blue-400 transition-colors"
-            >
-              Sign in
-            </a>
-          </p>
+              <a
+                href="#"
+                className="text-blue-500 hover:text-blue-400 transition-colors">
+                Sign in
+              </a>
+              </p>
+          )}
         </form>
 
         <div className="mt-6 text-center">

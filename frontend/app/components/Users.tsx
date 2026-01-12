@@ -3,9 +3,11 @@ import { Pencil, Trash2 } from "lucide-react";
 
 interface UsersProps {
   users: UserType[];
+  onDeleteUser: (userId: string) => void;
+  onEditUser: (user: UserType) => void;
 }
 
-const Users = ({ users }: UsersProps) => {
+const Users = ({ users, onDeleteUser, onEditUser }: UsersProps) => {
   const getInitials = (firstName?: string, lastName?: string) => {
     const first = firstName?.charAt(0)?.toUpperCase() || "";
     const last = lastName?.charAt(0)?.toUpperCase() || "";
@@ -31,9 +33,9 @@ const Users = ({ users }: UsersProps) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {users.map((user, index) => (
+          {users.map((user) => (
             <div
-              key={index}
+              key={user._id}
               className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
             >
               <div
@@ -47,6 +49,7 @@ const Users = ({ users }: UsersProps) => {
               >
                 <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <button
+                    onClick={() => onEditUser(user)}
                     className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
                     aria-label="Edit user"
                   >
@@ -54,6 +57,7 @@ const Users = ({ users }: UsersProps) => {
                   </button>
 
                   <button
+                    onClick={() => onDeleteUser(user._id!)}
                     className="w-8 h-8 rounded-full bg-white/90 hover:bg-red-50 flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
                     aria-label="Delete user"
                   >
