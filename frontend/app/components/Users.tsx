@@ -3,11 +3,9 @@ import { Pencil, Trash2 } from "lucide-react";
 
 interface UsersProps {
   users: UserType[];
-  onEdit?: (user: UserType) => void;
-  onDelete?: (userId: string) => void;
 }
 
-const Users = ({ users, onEdit, onDelete }: UsersProps) => {
+const Users = ({ users }: UsersProps) => {
   const getInitials = (firstName?: string, lastName?: string) => {
     const first = firstName?.charAt(0)?.toUpperCase() || "";
     const last = lastName?.charAt(0)?.toUpperCase() || "";
@@ -48,22 +46,19 @@ const Users = ({ users, onEdit, onDelete }: UsersProps) => {
                 }`}
               >
                 <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  {onEdit && (
-                    <button
-                      className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
-                      aria-label="Edit user"
-                    >
-                      <Pencil className="w-4 h-4 text-gray-700" />
-                    </button>
-                  )}
-                  {onDelete && (
-                    <button
-                      className="w-8 h-8 rounded-full bg-white/90 hover:bg-red-50 flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
-                      aria-label="Delete user"
-                    >
-                      <Trash2 className="w-4 h-4 text-red-600" />
-                    </button>
-                  )}
+                  <button
+                    className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
+                    aria-label="Edit user"
+                  >
+                    <Pencil className="w-4 h-4 text-gray-700" />
+                  </button>
+
+                  <button
+                    className="w-8 h-8 rounded-full bg-white/90 hover:bg-red-50 flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
+                    aria-label="Delete user"
+                  >
+                    <Trash2 className="w-4 h-4 text-red-600" />
+                  </button>
                 </div>
 
                 <div className="h-full flex items-center justify-center">
