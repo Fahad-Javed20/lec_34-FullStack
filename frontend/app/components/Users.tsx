@@ -1,11 +1,13 @@
 import type { UserType } from "~/types/UserType";
-
+import { Pencil, Trash2 } from "lucide-react";
 
 interface UsersProps {
   users: UserType[];
+  onEdit?: (user: UserType) => void;
+  onDelete?: (userId: string) => void;
 }
 
-const Users = ({ users }: UsersProps) => {
+const Users = ({ users, onEdit, onDelete }: UsersProps) => {
   const getInitials = (firstName?: string, lastName?: string) => {
     const first = firstName?.charAt(0)?.toUpperCase() || "";
     const last = lastName?.charAt(0)?.toUpperCase() || "";
@@ -31,13 +33,13 @@ const Users = ({ users }: UsersProps) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {users.map((user) => (
+          {users.map((user, index) => (
             <div
-              key={user._id}
+              key={index}
               className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
             >
               <div
-                className={`h-32 ${
+                className={`h-32 relative ${
                   user.gender?.toLowerCase() === "male"
                     ? "bg-linear-to-br from-blue-400 to-blue-600"
                     : user.gender?.toLowerCase() === "female"
@@ -45,6 +47,25 @@ const Users = ({ users }: UsersProps) => {
                       : "bg-linear-to-br from-gray-400 to-gray-600"
                 }`}
               >
+                <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  {onEdit && (
+                    <button
+                      className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
+                      aria-label="Edit user"
+                    >
+                      <Pencil className="w-4 h-4 text-gray-700" />
+                    </button>
+                  )}
+                  {onDelete && (
+                    <button
+                      className="w-8 h-8 rounded-full bg-white/90 hover:bg-red-50 flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
+                      aria-label="Delete user"
+                    >
+                      <Trash2 className="w-4 h-4 text-red-600" />
+                    </button>
+                  )}
+                </div>
+
                 <div className="h-full flex items-center justify-center">
                   <div className="w-20 h-20 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center border-4 border-white/50 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-3xl font-bold text-white">
