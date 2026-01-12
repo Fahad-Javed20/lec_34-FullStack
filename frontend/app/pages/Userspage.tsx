@@ -52,7 +52,7 @@ const Userspage = () => {
       console.log("Updating user with ID:", updatedUser._id);
       console.log("Update data:", updatedUser);
 
-      // Remove password if it's empty - create new object without password
+      // Remove password if it's empty
       const { password, ...userWithoutPassword } = updatedUser;
       const dataToSend = (!password || password === "") 
         ? userWithoutPassword 
@@ -63,7 +63,7 @@ const Userspage = () => {
       const response = await fetch(
         `http://localhost:3000/api/users/${updatedUser._id}`,
         {
-          method: "PUT",
+          method: "PATCH", // ✅ Changed from PUT to PATCH
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToSend),
         }
@@ -72,28 +72,19 @@ const Userspage = () => {
       console.log("Response status:", response.status);
       console.log("Response ok:", response.ok);
 
-      // Get response as text first to check what we're receiving
-      const responseText = await response.text();
-      console.log("Response text:", responseText);
-
       if (response.ok) {
-        try {
-          // Try to parse as JSON
-          const updated = JSON.parse(responseText);
-          console.log("Updated user from API:", updated);
+        const updated = await response.json();
+        console.log("Updated user from API:", updated);
 
-          setUsers((prev) =>
-            prev.map((user) => (user._id === updatedUser._id ? updated : user))
-          );
-          setEditingUser(null);
-          alert("User updated successfully!");
-        } catch (parseError) {
-          console.error("Failed to parse response as JSON:", parseError);
-          alert("Update may have succeeded but couldn't parse response");
-        }
+        setUsers((prev) =>
+          prev.map((user) => (user._id === updatedUser._id ? updated : user))
+        );
+        setEditingUser(null);
+        alert("User updated successfully!");
       } else {
-        console.error("Update failed with response:", responseText);
-        alert(`Failed to update user. Status: ${response.status}`);
+        const errorData = await response.json();
+        console.error("Update failed with error:", errorData);
+        alert(`Failed to update user: ${errorData.message || "Unknown error"}`);
       }
     } catch (error) {
       console.error("Error updating user:", error);
