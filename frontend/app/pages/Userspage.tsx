@@ -37,8 +37,8 @@ const Userspage = () => {
         setUsers((prev) => prev.filter((user) => user._id !== userId));
         alert("User deleted successfully!");
       } else {
-        const errorData = await response.json();
-        console.error("Delete error:", errorData);
+        const errorText = await response.text();
+        console.error("Delete error:", errorText);
         alert("Failed to delete user");
       }
     } catch (error) {
@@ -72,19 +72,28 @@ const Userspage = () => {
       console.log("Response status:", response.status);
       console.log("Response ok:", response.ok);
 
-      if (response.ok) {
-        const updated = await response.json();
-        console.log("Updated user from API:", updated);
+      // Get response as text first to check what we're receiving
+      const responseText = await response.text();
+      console.log("Response text:", responseText);
 
-        setUsers((prev) =>
-          prev.map((user) => (user._id === updatedUser._id ? updated : user))
-        );
-        setEditingUser(null);
-        alert("User updated successfully!");
+      if (response.ok) {
+        try {
+          // Try to parse as JSON
+          const updated = JSON.parse(responseText);
+          console.log("Updated user from API:", updated);
+
+          setUsers((prev) =>
+            prev.map((user) => (user._id === updatedUser._id ? updated : user))
+          );
+          setEditingUser(null);
+          alert("User updated successfully!");
+        } catch (parseError) {
+          console.error("Failed to parse response as JSON:", parseError);
+          alert("Update may have succeeded but couldn't parse response");
+        }
       } else {
-        const errorData = await response.json();
-        console.error("Update failed with error:", errorData);
-        alert(`Failed to update user: ${errorData.message || "Unknown error"}`);
+        console.error("Update failed with response:", responseText);
+        alert(`Failed to update user. Status: ${response.status}`);
       }
     } catch (error) {
       console.error("Error updating user:", error);
