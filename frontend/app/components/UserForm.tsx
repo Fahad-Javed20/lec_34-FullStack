@@ -25,6 +25,7 @@ const UserForm = ({ onAddUser, editingUser, onUpdateUser, onCancelEdit }: UserFo
   // Populate form when editingUser changes
   useEffect(() => {
     if (editingUser) {
+      console.log("Populating form with user:", editingUser);
       setValue("firstName", editingUser.firstName || "");
       setValue("lastName", editingUser.lastName || "");
       setValue("email", editingUser.email || "");
@@ -35,29 +36,40 @@ const UserForm = ({ onAddUser, editingUser, onUpdateUser, onCancelEdit }: UserFo
   }, [editingUser, setValue, reset]);
 
   const onSubmit = async (data: UserType) => {
+    console.log("Form submitted with data:", data);
+    console.log("Is editing?", !!editingUser);
+    
     if (editingUser && onUpdateUser) {
       // Update existing user
       const updatedUser = { ...data, _id: editingUser._id };
+      console.log("Calling onUpdateUser with:", updatedUser);
       await onUpdateUser(updatedUser);
       reset();
     } else {
       // Add new user
       try {
+        console.log("Creating new user with data:", data);
         const response = await fetch("http://localhost:3000/api/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
+        
+        console.log("Create response status:", response.status);
+        
         if (response.ok) {
           const newUser = await response.json();
+          console.log("New user created:", newUser);
           onAddUser(newUser);
           reset();
         } else {
-          alert("Failed to create user");
+          const errorData = await response.json();
+          console.error("Create error:", errorData);
+          alert(`Failed to create user: ${errorData.message || "Unknown error"}`);
         }
       } catch (error) {
         console.error("Error creating user:", error);
-        alert("Error creating user");
+        alert(`Error creating user: ${error}`);
       }
     }
   };

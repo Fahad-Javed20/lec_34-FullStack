@@ -27,13 +27,18 @@ const Userspage = () => {
 
   const handleDeleteUser = async (userId: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/users/${userId}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         setUsers((prev) => prev.filter((user) => user._id !== userId));
         alert("User deleted successfully!");
       } else {
+        const errorData = await response.json();
+        console.error("Delete error:", errorData);
         alert("Failed to delete user");
       }
     } catch (error) {
@@ -44,30 +49,51 @@ const Userspage = () => {
 
   const handleUpdateUser = async (updatedUser: UserType) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${updatedUser._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedUser),
-      });
-      
+      console.log("Updating user with ID:", updatedUser._id);
+      console.log("Update data:", updatedUser);
+
+      // Remove password if it's empty - create new object without password
+      const { password, ...userWithoutPassword } = updatedUser;
+      const dataToSend = (!password || password === "") 
+        ? userWithoutPassword 
+        : updatedUser;
+
+      console.log("Data being sent to API:", dataToSend);
+
+      const response = await fetch(
+        `http://localhost:3000/api/users/${updatedUser._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dataToSend),
+        }
+      );
+
+      console.log("Response status:", response.status);
+      console.log("Response ok:", response.ok);
+
       if (response.ok) {
         const updated = await response.json();
-        setUsers((prev) => 
+        console.log("Updated user from API:", updated);
+
+        setUsers((prev) =>
           prev.map((user) => (user._id === updatedUser._id ? updated : user))
         );
         setEditingUser(null);
         alert("User updated successfully!");
       } else {
-        console.error("Failed to update user");
-        alert("Failed to update user");
+        const errorData = await response.json();
+        console.error("Update failed with error:", errorData);
+        alert(`Failed to update user: ${errorData.message || "Unknown error"}`);
       }
     } catch (error) {
       console.error("Error updating user:", error);
-      alert("Error updating user");
+      alert(`Error updating user: ${error}`);
     }
   };
 
   const handleEditUser = (user: UserType) => {
+    console.log("Editing user:", user);
     setEditingUser(user);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -80,15 +106,15 @@ const Userspage = () => {
     <div>
       <Header />
       <Navbar />
-      <UserForm 
-        onAddUser={handleAddUser} 
+      <UserForm
+        onAddUser={handleAddUser}
         editingUser={editingUser}
         onUpdateUser={handleUpdateUser}
         onCancelEdit={handleCancelEdit}
       />
-      <Users 
-        users={users} 
-        onDeleteUser={handleDeleteUser} 
+      <Users
+        users={users}
+        onDeleteUser={handleDeleteUser}
         onEditUser={handleEditUser}
       />
       <Footer />
