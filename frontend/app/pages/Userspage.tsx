@@ -8,7 +8,6 @@ import Users from "~/components/Users";
 import type { UserType } from "~/types/UserType";
 
 const Userspage = () => {
-
   const [users, setUsers] = useState<UserType[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,16 +20,16 @@ const Userspage = () => {
     loadUsers();
   }, []);
 
-const handleAddUser = (newUser: UserType) => {
-  setUsers(prev => [...prev, newUser]);
-}
+  const handleAddUser = (newUser: UserType) => {
+    setUsers((prev) => [...prev, newUser]);
+  };
 
   return (
     <div>
       <Header />
       <Navbar />
-      <Users users = {users} />
-      <UserForm onAddUser = {handleAddUser} />
+      <UserForm onAddUser={handleAddUser} />
+      <Users users={users} />
       <Footer />
     </div>
   );

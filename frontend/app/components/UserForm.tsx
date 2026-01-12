@@ -15,17 +15,20 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
     handleSubmit,
     reset,
     formState: { errors },
-    watch,
-  } = useForm();
+  } = useForm<UserType>();
 
-  const password = watch("password");
-
-    const onSubmit = (data: UserType) => {
-        console.log("Form Data Submitted:", data);
-        onAddUser(data);
-       reset();
-    };
-
+  const onSubmit = async (data: UserType) => {
+    const response = await fetch("/http://localhost:3000/api/usersapi/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      const newUser = await response.json();
+      onAddUser(newUser);
+      reset();
+    }
+  };
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -41,7 +44,7 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
               </svg>
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Create User</h1>
           <p className="text-gray-400">Join NextGen and innovate together</p>
         </div>
 
@@ -63,7 +66,9 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
               />
             </div>
             {errors.firstName && (
-              <p className="text-red-500 text-sm mt-1">firstName is required</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.firstName.message}
+              </p>
             )}
           </div>
 
@@ -84,7 +89,9 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
               />
             </div>
             {errors.lastName && (
-              <p className="text-red-500 text-sm mt-1">Last name is required</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.lastName.message}
+              </p>
             )}
           </div>
 
@@ -109,7 +116,7 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
             </div>
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
-                Please Enter Valid Email
+                {errors.email.message}
               </p>
             )}
           </div>
@@ -139,7 +146,9 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
               />
             </div>
             {errors.password && (
-              <p className="text-red-500 text-sm mt-1">password is Required</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
@@ -178,14 +187,17 @@ const UserForm = ({ onAddUser }: UserFormProps) => {
               </div>
             </div>
             {errors.gender && (
-              <p className="text-red-500 text-sm mt-1">Gender is required</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.gender.message}
+              </p>
             )}
           </div>
 
           <button
+            type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
           >
-            <span>Get Started</span>
+            <span>Add User</span>
             <svg
               className="w-5 h-5"
               fill="none"
